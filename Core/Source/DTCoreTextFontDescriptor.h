@@ -62,6 +62,12 @@
 - (CTFontRef)newMatchingFont;
 
 /**
+ Creates an array of font descriptors whoms font family match the current font descriptors font family
+ */
+- (NSArray *)siblingFontDescriptors;
+
+
+/**
  @name Specifying Font Attributes
  */
 

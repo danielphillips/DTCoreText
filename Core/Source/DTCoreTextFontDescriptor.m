@@ -542,6 +542,15 @@ static BOOL _needsChineseFontCascadeFix = NO;
 	return retFont;
 }
 
+- (NSArray *)siblingFontDescriptors
+{
+	NSArray *allFontDescriptors = [[DTCoreTextFontCollection availableFontsCollection] fontDescriptors];
+	NSArray *myMatchingFontDescriptors = [allFontDescriptors filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fontFamily == %@", self.fontFamily]];
+	
+	NSSortDescriptor *alphabeticalSort = [NSSortDescriptor sortDescriptorWithKey:@"fontName" ascending:YES];
+	return [myMatchingFontDescriptors sortedArrayUsingDescriptors:@[alphabeticalSort]];
+}
+
 // two font descriptors are equal if their attributes has identical hash codes
 - (NSUInteger)hash
 {
